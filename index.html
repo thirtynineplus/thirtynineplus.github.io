@@ -4,6 +4,48 @@
   <title>Test Page for Onur & Onat</title>
 </head>
 <body>
-This is a test page.
+  <p> This is a test page. </p>
+  <p>One way to work on this is to have some javascript... </p>
+  
+      <canvas id="myCanvas" width="400" height="400"></canvas>
+
+    <script>
+      const canvas = document.getElementById('myCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Set up initial ball parameters
+      let x = canvas.width / 2;
+      let y = canvas.height / 2;
+      let dx = 2;
+      let dy = -2;
+      const ballRadius = 20;
+
+      function drawBall() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw the ball
+        ctx.beginPath();
+        ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+        ctx.fillStyle = 'red';
+        ctx.fill();
+        ctx.closePath();
+
+        // Bounce the ball off the walls
+        if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+          dx = -dx;
+        }
+        if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+          dy = -dy;
+        }
+
+        // Move the ball
+        x += dx;
+        y += dy;
+      }
+
+      // Call the draw function every 10 milliseconds
+      setInterval(drawBall, 10);
+    </script>
 </body>
 </html>
